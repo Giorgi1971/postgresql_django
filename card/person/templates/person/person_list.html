@@ -1,0 +1,60 @@
+{% extends 'person/base.html' %}
+
+
+{% block body %}
+
+<h1>This is Person list Page!</h1>
+
+<div class="jumbotron">
+    <div class="row">
+        {% if person_list %}
+
+        {% for i in person_list %}
+        <div class="col-4">
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"> {{ i.full_name }}</h4>
+                    <p class="card-text">Born {{ i.birth_date }} in {{ i.birth_place }}.</p>
+                    <p class="card-text">Personal number: {{ i.personal_number }}</p>
+                    <table>
+                        <tr>
+                            <th>Issue date</th>
+                            <th>Expiry date</th>
+                        </tr>
+                        <tr>
+                            <td>{{ i.issue_date }}</td>
+                            <td>{{ i.expiry_date }}</td>
+                        </tr>
+                        <tr>
+                            <th>Birth place</th>
+                            <th>Issuing authority</th>
+                        </tr>
+                        <tr>
+                            <td>{{ i.citizen }}</td>
+                            <td>{{ i.issuing_authority }}</td>
+                        </tr>
+                    </table>
+                    <p class="card-text">Sex: {{ i.sex }} . Card {{i.card_number}}.</p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                </div>
+                <img class="card-img-bottom" src="{{ i.photo.url }}" alt="Card image" style="height:320px;">
+            </div>
+        </div>
+        {% endfor %}
+
+        {% else %}
+        
+        <div class="text-primary">
+            <h2>Persons list is empty <span class="badge badge-secondary">
+                    <a href="{% url 'person:add_person' %}">
+                        Add Persons!
+                    </a>
+                </span></h2>
+        </div>
+
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

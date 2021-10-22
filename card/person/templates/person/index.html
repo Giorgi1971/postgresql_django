@@ -1,0 +1,19 @@
+{% extends 'person/base.html' %}
+
+
+{% block body %}
+
+<h2>
+    This is Index!
+</h2>
+<div class="jumbotron">
+    
+    <h4>Today: 
+        {% now " Y d m" %}
+    </h4>
+    
+    <p>----------------</p>
+    
+    {{ time }}
+</div>
+{% endblock %}
