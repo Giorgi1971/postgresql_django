@@ -1,0 +1,20 @@
+{% extends 'person/base.html' %}
+
+{% block body %}
+
+{% if not form.instance.pk %}
+<h1>Create Person!</h1>
+{% else %}
+<h1>Update Person!</h1>
+{% endif %}
+
+
+<div class="jumbotron">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-warning" type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}

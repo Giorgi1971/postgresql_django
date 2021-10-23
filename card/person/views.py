@@ -1,27 +1,27 @@
+"""
+პირადობის მოწმობის მონაცემების შეტანა ბაზაში, კორექტირება, წაშლა. 
+მონაცემები არაა User კლასთან დაკავშირებული.
+"""
 from datetime import timezone
+from django.db.models import fields
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic.list import ListView
 from .models import Person
 from .forms import PersonForm
-# Create your views here.
+from django.views.generic import (CreateView, DeleteView, UpdateView, DetailView, ListView)
 
 
 def index(request):
     return render(request, 'person/index.html', {'time':timezone.now().date()})
 
 
-# def persons(request):
-#     person_list = Person.objects.all()
-#     return render(request, 'person/person_list.html', {'person_list':person_list,
-#         })
-
-
 class PersonListView(ListView):
     model = Person
 
 
+# ამ მეთოდით უფრო მარტივად ვასებთ, მეტი ავტომატიზაცია აქვს და ვალიდაცია
 def add_person(request):
     form = PersonForm()
     if request.method == 'POST':
@@ -38,3 +38,23 @@ def add_person(request):
         else:
             return render(request, 'person/add_person.html', {'form':form})
     return render(request, 'person/add_person.html', {'form':form})
+
+
+class CreatePersonView(CreateView):
+    fields = '__all__'
+    model = Person
+
+
+class UpdatePersonView(UpdateView):
+    fields = '__all__'
+    model = Person
+
+
+class PersonDetailView(DetailView):
+    model = Person
+
+
+# ეს არ შლის სურათს მედია ფაილიდან. გადასაწყვეტია ...
+class PersonDeleteView(DeleteView):
+    model = Person
+    success_url = reverse_lazy('person:persons')

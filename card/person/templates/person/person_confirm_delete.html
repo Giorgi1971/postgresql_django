@@ -1,0 +1,15 @@
+{% extends 'person/base.html' %}
+
+{% block body %}
+
+<h1>
+    Delete {{person.name}}?
+
+</h1>
+<form method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Delete">
+    <a href="{% url 'person:person_detail' pk=person.pk %}">Cancel</a>
+
+</form>
+{% endblock %}

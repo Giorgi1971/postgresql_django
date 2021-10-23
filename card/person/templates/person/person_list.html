@@ -7,8 +7,9 @@
 
 <div class="jumbotron">
     <div class="row">
+        
         {% if person_list %}
-
+        
         {% for i in person_list %}
         <div class="col-4">
 
@@ -36,7 +37,11 @@
                         </tr>
                     </table>
                     <p class="card-text">Sex: {{ i.sex }} . Card {{i.card_number}}.</p>
-                    <a href="#" class="btn btn-primary">See Profile</a>
+                    <a href="{% url 'person:person_detail' pk=i.pk %}" class="btn btn-primary">See Profile</a>
+                    <a class="btn btn-warning" href="{% url 'person:updateperson' pk=i.pk %}">Update</a>
+         
+                    <a class="btn btn-danger" href="{% url 'person:deleteperson' pk=i.pk %}">Delete</a>
+    
                 </div>
                 <img class="card-img-bottom" src="{{ i.photo.url }}" alt="Card image" style="height:320px;">
             </div>

@@ -1,0 +1,29 @@
+{% extends 'person/base.html' %}
+
+{% block body %}
+<h2>
+    Person detail Page!
+</h2>
+<div class="jumbotron">
+    <h4 class="card-title">{{ person.full_name }}</h4>
+        <div class="card" style="width:300px">
+          <img class="card-img-top" src="{{ person.photo.url }}" alt="Card image" style="width:100%">
+          <div class="card-body">
+            <p class="card-text">personal_number: {{ person.personal_number }}</p>
+            <p class="card-text">birth_date: {{ person.birth_date }}</p>
+            <p class="card-text">birth_place: {{ person.birth_place }}</p>
+          </div>
+        </div>
+        <br>
+        
+        <div class="container">
+            <p>
+                <a class="btn btn-warning" href="{% url 'person:updateperson' pk=person.pk %}">Update</a>
+         
+                <a class="btn btn-danger" href="{% url 'person:deleteperson' pk=person.pk %}">Delete</a>
+            </p>
+        </div>
+        
+    </div>
+
+{% endblock %}

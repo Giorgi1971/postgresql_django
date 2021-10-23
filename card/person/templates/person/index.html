@@ -7,13 +7,8 @@
     This is Index!
 </h2>
 <div class="jumbotron">
-    
-    <h4>Today: 
-        {% now " Y d m" %}
-    </h4>
-    
-    <p>----------------</p>
-    
-    {{ time }}
+    <h4>Today: {% now "d-m-Y" %}</h4>
+    <p>------------------------</p>
+    <h5>{{ time }}</h5>
 </div>
 {% endblock %}

@@ -29,15 +29,19 @@
 
       <!-- Links -->
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="{% url 'person:persons' %}">PERSONS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'person:add_person' %}">ADD PERSON</a>
+          <a class="nav-link active" href="{% url 'person:add_person' %}">Add PERSON</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'person:createperson' %}">Craete PERSON</a>
         </li>
 
+
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'admin:index' %}">ADMIN</a>
+          <a class="nav-link  active" href="{% url 'admin:index' %}">ADMIN</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
